@@ -33,14 +33,7 @@ def select_vedio():
                 cv2.rectangle(i,(x,y),(x+w,y+h),(255,0,0),2)
                 cv2.putText(i,'face',(w//2+x,y-h//5),cv2.FONT_HERSHEY_PLAIN,2.0,(255,255,255),2,1)
                 roi_gray = gray[y:y+h, x:x+w]
-                roi_color = i[y:y+h, x:x+w]
-                for (ex,ey,ew,eh) in eyes:
-                    cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-                    cv2.putText(i,"face count",(20,20),cv2.FONT_HERSHEY_PLAIN,2.0,(255,255,255),2,1)
-                    cv2.putText(i,str(l),(230,20),cv2.FONT_HERSHEY_PLAIN,2.0,(255,255,255),2,1)
-            cv2.imshow("rstp",i)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                exit(0)
+
 
         # if the panels are None, initialize them
         if panelA is None or panelB is None:
@@ -49,17 +42,13 @@ def select_vedio():
             panelA.image = image
             panelA.pack(side="left", padx=10, pady=10)
 
-            # while the second panel will store the edge map
-            panelB = Label(image=edged)
-            panelB.image = edged
-            panelB.pack(side="right", padx=10, pady=10)
 
         # otherwise, update the image panels
         else:
             # update the pannels
             panelA.configure(image=image)
             panelB.configure(image=edged)
-            panelA.image = image
+
             panelB.image = edged
 
 
