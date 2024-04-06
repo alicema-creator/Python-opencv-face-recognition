@@ -2,7 +2,7 @@
 
 from tkinter import filedialog
 import tkinter.messagebox
-from tkinter import *
+
 from PIL import Image
 from PIL import ImageTk
 import cv2
@@ -10,7 +10,7 @@ import numpy as np
 
 def select_vedio():
     # grab a reference to the image panels
-    global panelA, panelB
+
     path = filedialog.askopenfilename(title='打开', filetypes=[('S2out', '*.*'), ('All Files', '*')])
     print(path)
 
@@ -24,11 +24,7 @@ def select_vedio():
             ret,frame=cap.read()
             i=frame
                # print i.shape
-            gray=cv2.cvtColor(i,cv2.COLOR_BGR2GRAY)
-            faces=face_cascade.detectMultiScale(gray,1.3,5)
-            eyes=eye_cascade.detectMultiScale(gray,1.3,5)
-            l=len(faces)
-            print(l)
+
             for (x,y,w,h) in faces:
                 cv2.rectangle(i,(x,y),(x+w,y+h),(255,0,0),2)
                 cv2.putText(i,'face',(w//2+x,y-h//5),cv2.FONT_HERSHEY_PLAIN,2.0,(255,255,255),2,1)
@@ -39,8 +35,7 @@ def select_vedio():
         if panelA is None or panelB is None:
             # the first panel will store our original image
             panelA = Label(image=image)
-            panelA.image = image
-            panelA.pack(side="left", padx=10, pady=10)
+
 
 
         # otherwise, update the image panels
